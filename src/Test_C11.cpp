@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -34,6 +35,13 @@ void funcTest(const vector<int> &vi){
 	auto ci = vi.begin();
 }
 
+// C++11 supports in-class initialization of data members
+class MyClass{
+	int a = 7; // C++11 only
+public:
+	MyClass();
+};
+
 int main() {
 	cout << "Test C++11 features" << endl;
 	X x0{}; // default constructor is preferred instead of initializer-list constructor
@@ -56,6 +64,12 @@ int main() {
     auto c = 'a'; // char
     auto d = 0.76; //double
 
+    cout << "variables declared with auto: "<< x <<" "<<c <<" "<<d;
+
+    // C++11 container initializers - initialize containers intuitively
+    vector<string> vs = {"first", "second", "third"};
+    map singers ={ {"Olivia Neacsu", "+46 727242724"},
+    {"Anna Winquist", "+46 723299133"}};
 
 	return 0;
 }
