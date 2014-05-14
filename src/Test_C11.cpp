@@ -42,6 +42,21 @@ public:
 	MyClass();
 };
 
+// example Defaulted functions
+struct A
+{
+ A()=default; //C++11
+ virtual ~A()=default; //C++11
+};
+
+// example Deleted Functions
+struct NoCopy
+{
+	NoCopy() = default;
+	NoCopy & operator =( const NoCopy & ) = delete;
+	NoCopy ( const NoCopy & ) = delete;
+};
+
 int main() {
 	cout << "Test C++11 features" << endl;
 	X x0{}; // default constructor is preferred instead of initializer-list constructor
@@ -68,8 +83,12 @@ int main() {
 
     // C++11 container initializers - initialize containers intuitively
     vector<string> vs = {"first", "second", "third"};
-    map singers ={ {"Olivia Neacsu", "+46 727242724"},
+    map<string, string> singers ={ {"Olivia Neacsu", "+46 727242724"},
     {"Anna Winquist", "+46 723299133"}};
+
+    // example - deleted functions - usage: prevent object copying
+    NoCopy a;
+   // NoCopy b(a);  // error: call to deleted constructor of 'NoCopy'
 
 	return 0;
 }
