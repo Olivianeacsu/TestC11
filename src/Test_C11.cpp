@@ -7,6 +7,8 @@
 //============================================================================
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 // Example - The C++ programming language 4th Edition, C++11 included, page 496
@@ -27,6 +29,11 @@ public:
 	S2(int a=0, int b=0):m_a(a), m_b(b){}
 };
 
+// automatic type deduction
+void funcTest(const vector<int> &vi){
+	auto ci = vi.begin();
+}
+
 int main() {
 	cout << "Test C++11 features" << endl;
 	X x0{}; // default constructor is preferred instead of initializer-list constructor
@@ -44,6 +51,10 @@ int main() {
 	S2 x23(1);   // ok, use constructor and one default argument
 	S2 x241{1};  // ok, use constructor and one default argument
 
+    // automatic type deduction and decltype; C++11 has changed the meaning of keyword 'auto'
+	auto x=0; // x has type int because 0 is int
+    auto c = 'a'; // char
+    auto d = 0.76; //double
 
 
 	return 0;
