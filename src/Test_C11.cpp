@@ -68,6 +68,17 @@ void funcAmbigous(int a){ cout<<"funcAmbigous(int) called" <<endl;}
 void funcAmbigous(char *c) { cout << "funcAmbigous(char*) called" <<endl;}
 ////////////////////
 
+// delegating constructors
+const int MAX = 100;
+class ShowDelegatingCtrsC
+{
+ int x, y;
+ char *p;
+public:
+ ShowDelegatingCtrsC(int v) : x(v), y(0), p(new char [MAX]) {} //#1 target
+ ShowDelegatingCtrsC(): ShowDelegatingCtrsC(0) {cout<<"delegating ctor"<<endl;} //#2 delegating
+};
+
 int main() {
 	cout << "Test C++11 features" << endl;
 	X x0{}; // default constructor is preferred instead of initializer-list constructor
