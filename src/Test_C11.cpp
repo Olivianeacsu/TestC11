@@ -18,6 +18,7 @@ struct X{
 	X(){ cout<< "default constructor"<<endl;}
 	X(int){ cout << "one parameter constructor";}
 };
+////////////////////
 
 // Example - The C++ programming language 4th Edition, C++11 included, page 492
 class S1{
@@ -29,11 +30,13 @@ class S2{
 public:
 	S2(int a=0, int b=0):m_a(a), m_b(b){}
 };
+////////////////////
 
 // automatic type deduction
 void funcTest(const vector<int> &vi){
 	auto ci = vi.begin();
 }
+////////////////////
 
 // C++11 supports in-class initialization of data members
 class MyClass{
@@ -41,6 +44,7 @@ class MyClass{
 public:
 	MyClass();
 };
+////////////////////
 
 // example Defaulted functions
 struct A
@@ -48,6 +52,7 @@ struct A
  A()=default; //C++11
  virtual ~A()=default; //C++11
 };
+////////////////////
 
 // example Deleted Functions
 struct NoCopy
@@ -56,6 +61,12 @@ struct NoCopy
 	NoCopy & operator =( const NoCopy & ) = delete;
 	NoCopy ( const NoCopy & ) = delete;
 };
+////////////////////
+
+// nullptr
+void funcAmbigous(int a){ cout<<"funcAmbigous(int) called" <<endl;}
+void funcAmbigous(char *c) { cout << "funcAmbigous(char*) called" <<endl;}
+////////////////////
 
 int main() {
 	cout << "Test C++11 features" << endl;
@@ -89,6 +100,13 @@ int main() {
     // example - deleted functions - usage: prevent object copying
     NoCopy a;
    // NoCopy b(a);  // error: call to deleted constructor of 'NoCopy'
+
+    // example nullptr
+    // C++ 2003
+    funcAmbigous(0); // 0 is both int as NULL; which one will be called? with int or with char *
+                    // my compiler chose to call the one with int
+    //C++ 11
+    funcAmbigous(nullptr); // the function with char* called. no ambiguities
 
 	return 0;
 }
