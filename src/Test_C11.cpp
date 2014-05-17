@@ -78,6 +78,31 @@ public:
  ShowDelegatingCtrsC(int v) : x(v), y(0), p(new char [MAX]) {} //#1 target
  ShowDelegatingCtrsC(): ShowDelegatingCtrsC(0) {cout<<"delegating ctor"<<endl;} //#2 delegating
 };
+////////////////////
+
+// Built-in types
+// The built-in types have default and copy constructors.
+//For a built-in type the default ctor is not invoked for uninitialized non-static variables.
+// The default values for built-in types: 0 for integers, 0.0 for floating, nullptr for pointers
+//example:
+void functShowBuiltInTypes(){
+	cout <<"functShowBuiltInTypes starts here" << endl;
+	int a0;    // uninitialized
+	int a1();  // function declaration (intended?)
+    cout << "a0= " << a0 << " a1= " << a1 <<endl;
+    		//  warning: address of function 'a1' will always evaluate to 'true'
+            //  warning: variable 'a0' is uninitialized when used here
+
+	int a{};   // a becomes 0
+	double d{}; // d becomes 0.0
+	char* p{};  //p becomes nullptr
+	//cout << "a= " << a << " d= " << d << " p= "<< p << endl;  // this line not printed
+
+	int *p1 = new int;   // uninitialized int
+	int* p2 = new int{}; // the int is initialized with 0
+	//cout << "*p1= " << *p1 << " *p2= " << *p2 <<endl;     // this line not printed
+}
+//////////////////
 
 int main() {
 	cout << "Test C++11 features" << endl;
@@ -118,6 +143,9 @@ int main() {
                     // my compiler chose to call the one with int
     //C++ 11
     funcAmbigous(nullptr); // the function with char* called. no ambiguities
+
+    // example built-in types initialization
+    functShowBuiltInTypes();
 
 	return 0;
 }
